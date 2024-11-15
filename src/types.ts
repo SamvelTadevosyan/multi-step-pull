@@ -9,3 +9,5 @@ export interface OptionType {
     icon: string;
     label: string;
 }
+
+export type GenericCallback = (...args: any[]) => void;
