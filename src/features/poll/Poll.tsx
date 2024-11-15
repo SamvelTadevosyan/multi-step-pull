@@ -37,27 +37,5 @@ export function Poll() {
                 onSelectOption={handleIconClick}
             />
         </Styled.PollContainer>
-
-    // <div>
-    //     {!isPollCompleted && (
-    //         <>
-    //             <div>
-    //                 {
-    //                     steps[currentStep].title
-    //                 }
-    //             </div>
-    //             {steps[currentStep].options.map(option => (
-    //                 <div key={option.id} onClick={() => handleIconClick(option)}>
-    //                     {option.label}
-    //                 </div>
-    //             ))}
-    //         </>
-    //     )}
-    //     {isPollCompleted && answers.map((answer, index) => (
-    //         <div key={index}>
-    //             {answer.label}
-    //         </div>
-    //     ))}
-    // </div>
     );
 }
