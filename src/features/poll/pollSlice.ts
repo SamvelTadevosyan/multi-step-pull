@@ -1,18 +1,32 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from "../../app/store";
-import {OptionType} from "../../types";
+import { OptionType, Step } from "../../types";
+import axios from 'axios';
+import { localSteps } from "../../constants";
 
 interface PollState {
+    steps: Step[];
     currentStep: number;
     answers: OptionType[];
     completed: boolean;
+    loading: boolean;
+    error: string | null;
 }
 
+
 const initialState: PollState = {
+    steps: [],
     currentStep: 0,
     answers: [],
     completed: false,
+    loading: false,
+    error: null,
 };
+
+export const fetchPollSteps = createAsyncThunk('poll/fetchSteps', async () => {
+    const response = await axios.get('https://67386abb4eb22e24fca7dc5e.mockapi.io/api/v1/poll');
+    return response.data;
+});
 
 const pollSlice = createSlice({
     name: 'poll',
@@ -33,22 +47,31 @@ const pollSlice = createSlice({
             state.completed = true;
         },
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchPollSteps.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchPollSteps.fulfilled, (state, action: PayloadAction<any>) => {
+                state.steps = action.payload;
+                state.loading = false;
+            })
+            .addCase(fetchPollSteps.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+                // In case if api will not work, just to show how app works
+                state.steps = localSteps;
+            });
+    },
 });
 
 // actions
-export const { setAnswer, nextStep, completePoll } = pollSlice.actions;
+export const { setAnswer, nextStep, completePoll, resetPoll } = pollSlice.actions;
 
 // selectors
-export const selectCurrentStep = (state: RootState) => {
-    return state.poll.currentStep
-};
-
-export const selectAnswers = (state: RootState) => {
-    return state.poll.answers
-};
-
-export const selectPoolComplete = (state: RootState) => {
-    return state.poll.completed
-};
+export const selectCurrentStep = (state: RootState) => state.poll.currentStep
+export const selectSteps = (state: RootState) => state.poll.steps;
+export const selectPoolComplete = (state: RootState) => state.poll.completed
 
 export default pollSlice.reducer;

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import Box from '@mui/material/Box';
 
 const CarouselContainer = styled.div`
   display: flex;
@@ -21,6 +20,8 @@ const SliderContainer = styled('div' )<{
 
 const LeftContainer = styled.div`
   background-color: #6b55fe;
+  padding-left: 150px;
+  padding-right: 400px;
   width: 50%;
 `;
 
@@ -29,7 +30,7 @@ const RightContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 50%;
-  gap: 20px;
+  gap: 10%;
 `;
 
 const CarouselItem = styled.div`
@@ -45,7 +46,8 @@ const ProgressContainer = styled('div' )<{
   position: absolute;
   z-index: 2;
   flex-direction: column;
-  top: ${({ $offset }) => `calc(50% - ${$offset * 30}px)`};
+  top: ${({ $offset }) => `calc(50% - ${$offset * 25}px)`};
+  left: 35px;
   gap: 10px;
 `;
 
@@ -54,11 +56,11 @@ const ProgressDot = styled('span' )<{
 }>`
   display: flex;
   flex-direction: column;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 100%;
   background-color: ${(props) => props.$isActive ? 'transparent' : 'white'};
-  border: 3px solid white;
+  border: 2px solid white;
 `;
 
 export default {

@@ -9,7 +9,7 @@ type QuestionProps = {
 export default function Question({ title }: QuestionProps): JSX.Element {
 return (
     <Styled.QuestionContainer>
-        <Typography variant="h3" sx={{ fontWeight: 'bold' }}>
+        <Typography variant="h2" sx={{ fontWeight: 'bold' }}>
             {title}
         </Typography>
     </Styled.QuestionContainer>

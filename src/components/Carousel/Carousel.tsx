@@ -20,7 +20,9 @@ export default function Carousel({ steps, answers, onSelectOption }: CarouselPro
     const [currentStep, setCurrentIndex] = useState(0);
 
     const nextItem = (option: OptionType) => {
-        setCurrentIndex(currentStep + 1)
+        if (currentStep <= steps.length - 1) {
+            setCurrentIndex(currentStep + 1)
+        }
         onSelectOption(option)
     };
 
