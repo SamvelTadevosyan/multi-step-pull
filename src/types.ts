@@ -5,7 +5,6 @@ export interface Step {
 }
 
 export interface OptionType {
-    id: number;
     icon: string;
     label: string;
 }

@@ -4,7 +4,7 @@ import { OptionType, Step } from "../../types";
 import axios from 'axios';
 import { localSteps } from "../../constants";
 
-interface PollState {
+export interface PollState {
     steps: Step[];
     currentStep: number;
     answers: OptionType[];
@@ -59,7 +59,7 @@ const pollSlice = createSlice({
             })
             .addCase(fetchPollSteps.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.payload as string;
+                state.error = action.error.message as string;
                 // In case if api will not work, just to show how app works
                 state.steps = localSteps;
             });
