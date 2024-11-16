@@ -3,7 +3,7 @@ import { OptionType } from '../../types';
 import axios from "axios";
 import {RootState} from "../../app/store";
 
-interface AnswersState {
+export interface AnswersState {
     answers: OptionType[];
     isSubmitting: boolean;
     isSubmitted: boolean;

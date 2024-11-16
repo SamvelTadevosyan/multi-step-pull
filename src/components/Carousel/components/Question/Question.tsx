@@ -2,7 +2,7 @@ import React from "react";
 import Styled from "./Question.styled";
 import { Typography } from "@mui/material";
 
-type QuestionProps = {
+export type QuestionProps = {
     title: string
 }
 

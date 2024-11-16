@@ -2,9 +2,9 @@ import React from "react";
 import { Typography, Button, Tooltip } from '@mui/material';
 import { GenericCallback, OptionType } from "../../../../types";
 
-type OptionProps = {
+export type OptionProps = {
     option: OptionType;
-    isSelected: boolean;
+    isSelected?: boolean;
     onOptionSelect: GenericCallback
 }
 

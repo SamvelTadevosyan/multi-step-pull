@@ -30,7 +30,7 @@ export default function Carousel({ steps, answers, onSelectOption }: CarouselPro
         <Styled.CarouselContainer>
             <Styled.ProgressContainer $offset={steps.length/2}>
                 {steps.map(({ id }, index) => (
-                    <Styled.ProgressDot key={id} $isActive={currentStep === index}/>
+                    <Styled.ProgressDot key={id} role="progressDots" $isActive={currentStep === index}/>
                 ))}
             </Styled.ProgressContainer>
             <Styled.SliderContainer $currentStep={currentStep} $length={steps.length}>
@@ -47,7 +47,7 @@ export default function Carousel({ steps, answers, onSelectOption }: CarouselPro
                                 {step.options.map((option, index) => (
                                     <Option
                                         key={index}
-                                        isSelected={answers?.[currentStep]?.id === option.id}
+                                        isSelected={answers?.[currentStep]?.label === option.label}
                                         option={option}
                                         onOptionSelect={(option) => nextItem(option)}
                                     />
