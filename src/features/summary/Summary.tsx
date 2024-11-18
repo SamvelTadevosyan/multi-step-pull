@@ -10,9 +10,10 @@ import {
 } from '../poll/pollSlice';
 
 import CircularProgress from '@mui/material/CircularProgress';
-import {Typography, Button} from "@mui/material";
-import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {selectAnswers, selectIsSubmitting, resetAnswers, submitAnswers} from "./summarySlice";
+import Typography from "@mui/material/Typography";
+
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { selectAnswers, selectIsSubmitting, resetAnswers, submitAnswers } from "./summarySlice";
 
 export default function Summary() {
     const isSubmitting = useAppSelector(selectIsSubmitting);
